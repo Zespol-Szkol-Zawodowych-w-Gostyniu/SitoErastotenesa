@@ -1,8 +1,16 @@
 ﻿// Sito Erastotenesa
-//
+// Stoper - mierzenie czasu wykonania funkcji
+/*
+funkcja clock() zwraca liczbę tyknięc zegara od  momentu, w którym program zaczął 
+się uruchamiać.
+Aby zobaczyć wynik w sekundach trzeba podzielić to przez stałą CLOCKS_PER_SEC -
+zobaczymy wtedy ile czasu program już działa
+typ clock_t to również long int
+*/
 
 
 #include <iostream>
+#include <time.h>
 using namespace std;
 
 int sito(bool tabPrimeNumber[], int size) {
@@ -41,13 +49,17 @@ int main()
     //        for (int j = 2; i * j < 1000; j++) 
     //            tabPrimeNumber[i * j] = 0;//wykreślamy krotności liczb pierwszych
     //}
+    clock_t start = clock();
     cout << "znaleziono: " << sito(tabPrimeNumber, rozmiar) << " liczb pierwszych" << endl;
+   
     for (int i = 2; i < rozmiar; i++) {
         if (tabPrimeNumber[i])
             cout << i << ",";
     }
     cout << endl;
-    
+    clock_t end = clock();
+    double elapsed = double(end - start) / CLOCKS_PER_SEC;
+    cout << elapsed << end;
 
 
 }
